@@ -1,0 +1,17 @@
+{
+  "name": "lambdash.either",
+  "version": "0.5.0",
+  "description": "Either data type for lambdash",
+  "main": "src/Either.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "author": "Mark Wardle <mwwardle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lambdash": "^0.5.4"
+  }
+}
