@@ -29,9 +29,9 @@ Either.rights = _.filter(Either.isRight);
 Either.caught = _.curry(function(fn) {
     return _.curryN(fn.length, function(){
         try {
-            return Either.right(fn.apply(arguments));
+            return Either.Right(fn.apply(this, arguments));
         } catch (e) {
-            return Either.left(e);
+            return Either.Left(e);
         }
     });
 });
@@ -67,12 +67,23 @@ Either.fold = _.curry(function(fn, init, either) {
 
 Either.foldr = Either.foldl = Either.fold;
 
-Either.of = Either.right;
+Either.of = Either.Right;
 
 Either.ap = _.curry(function(apply, either) {
-    return Either.isLeft(either) ? either : Either.map(apply.value, either);
+    return Either.isLeft(apply) ? apply : Either.map(apply.value, either);
 });
 
 Either.flatten = _.curry(function(either) {
-    return Either.isLeft(either) ? either : Either.value;
+    return Either.isLeft(either) ? either : either.value;
 });
+
+Either.show = Either.case({
+    Left: function(value) {
+        return "Either.Left(" + _.show(value) + ")";
+    },
+    Right: function(value) {
+        return "Either.Right(" + _.show(value) + ")";
+    }
+});
+
+module.exports = Either;
