@@ -104,6 +104,21 @@ describe('Either', function(){
         });
     });
 
+    describe('#concat', function(){
+        it('should concat two right values', function(){
+            var e1 = Right([1,2,3]);
+            var e2 = Right([4,5,6]);
+            var e3 = Left("e3");
+            var e4 = Left("e4");
+
+            assert(_.eq(Either.concat(e1,e2), Right([1,2,3,4,5,6])));
+            assert(_.eq(Either.concat(e2,e1), Right([4,5,6,1,2,3])));
+            assert(_.eq(Either.concat(e3,e1), e3));
+            assert(_.eq(Either.concat(e1,e3), e3));
+            assert(_.eq(Either.concat(e3,e4), e3));
+        });
+    });
+
     describe('#caught', function(){
         it('should create a function that takes another function', function(){
             var fn = function(a, b) {return a + b};
@@ -292,6 +307,11 @@ describe('Either', function(){
         it('should implement Ord', function(){
             assert(_.Ord.member(Right(1)));
             assert(_.Ord.member(Left(1)));
+        });
+
+        it('should implement Semigroup', function(){
+            assert(_.Semigroup.member(Right(1)));
+            assert(_.Semigroup.member(Left(1)));
         });
 
         it('should implement Functor', function(){

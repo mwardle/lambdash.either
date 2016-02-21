@@ -30,6 +30,16 @@ function TypedEither(L,R) {
 
     Either.rights = _.filter(Either.isRight);
 
+    Either.concat = _.curry(function(left, right){
+        if (Either.isLeft(left)) {
+            return left;
+        }
+        if (Either.isLeft(right)) {
+            return right;
+        }
+        return Right(_.concat(left.value, right.value));
+    });
+
     Either.caught = _.curry(function(fn) {
         return _.curryN(fn.length, function(){
             try {
