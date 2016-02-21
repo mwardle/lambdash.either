@@ -3,6 +3,7 @@
   "version": "0.6.0",
   "description": "Either data type for lambdash",
   "main": "src/Either.js",
+  "repository": "https://github.com/mwardle/lambdash.either.git",
   "directories": {
     "test": "test"
   },
