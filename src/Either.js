@@ -94,5 +94,6 @@ function TypedEither(L,R) {
 }
 
 var Either = TypedEither(_.Any, _.Any);
+Either.Typed = TypedEither;
 
 module.exports = Either;
