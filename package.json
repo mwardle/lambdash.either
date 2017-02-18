@@ -9,12 +9,14 @@
   },
   "scripts": {
     "test": "node_modules/.bin/mocha test/",
-    "coverage": "node_modules/.bin/istanbul cover _mocha && open coverage/lcov-report/*.html"
+    "coverage": "node_modules/.bin/istanbul cover _mocha && open coverage/lcov-report/*.html",
+    "lint": "./node_modules/.bin/eslint \"src/**\"",
+    "lint-fix": "./node_modules/.bin/eslint \"src/**\" --fix"
   },
   "author": "Mark Wardle <mwwardle@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lambdash": "^0.6.1"
+    "lambdash": "^0.7.0-alpha"
   },
   "devDependencies": {
     "istanbul": "^0.4.2",

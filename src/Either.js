@@ -1,28 +1,18 @@
-var _ = require('lambdash');
+const _ = require('lambdash');
 
 function TypedEither(L,R) {
-    var Either = _.Type.sum('Either', {Left: {value: L}, Right: {value: R}});
+    const Either = _.Type.sum('Either', {Left: {value: L}, Right: {value: R}});
 
-    var Left = Either.Left;
-    var Right = Either.Right;
-
-    Either.isLeft = Either.case({
-        Left: true,
-        Right: false
-    });
-
-    Either.isRight = Either.case({
-        Left: false,
-        Right: true
-    });
+    const Left = Either.Left;
+    const Right = Either.Right;
 
     /**
      * @sig (a -> c) -> (b -> c) -> Either a b -> c
      */
-    Either.either = _.curry(function(leftFn, rightFn, either){
+    Either.either = _.curry(function(leftFn, rightFn, either) {
         return Either.case({
             Left: leftFn,
-            Right: rightFn
+            Right: rightFn,
         }, either);
     });
 
@@ -30,7 +20,7 @@ function TypedEither(L,R) {
 
     Either.rights = _.filter(Either.isRight);
 
-    Either.concat = _.curry(function(left, right){
+    Either.concat = _.curry(function(left, right) {
         if (Either.isLeft(left)) {
             return left;
         }
@@ -41,7 +31,7 @@ function TypedEither(L,R) {
     });
 
     Either.caught = _.curry(function(fn) {
-        return _.curryN(fn.length, function(){
+        return _.curryN(fn.length, function() {
             try {
                 return Right(fn.apply(this, arguments));
             } catch (e) {
@@ -75,7 +65,7 @@ function TypedEither(L,R) {
             Left: init,
             Right: function(value) {
                 return fn(init, value);
-            }
+            },
         }, either);
     });
 
@@ -93,17 +83,17 @@ function TypedEither(L,R) {
 
     Either.show = Either.case({
         Left: function(value) {
-            return "Either.Left(" + _.show(value) + ")";
+            return 'Either.Left(' + _.show(value) + ')';
         },
         Right: function(value) {
-            return "Either.Right(" + _.show(value) + ")";
-        }
+            return 'Either.Right(' + _.show(value) + ')';
+        },
     });
 
     return Either;
 }
 
-var Either = TypedEither(_.Any, _.Any);
-Either.Typed = TypedEither;
+const _Either = TypedEither(_.Any, _.Any);
+_Either.Typed = TypedEither;
 
-module.exports = Either;
+module.exports = _Either;
