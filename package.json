@@ -1,6 +1,6 @@
 {
   "name": "lambdash.either",
-  "version": "0.6.0",
+  "version": "0.7.0-alpha",
   "description": "Either data type for lambdash",
   "main": "src/Either.js",
   "repository": "https://github.com/mwardle/lambdash.either.git",
