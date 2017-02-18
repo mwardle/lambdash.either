@@ -56,8 +56,8 @@ function TypedEither(L,R) {
         return _.compare(left.value, right.value);
     });
 
-    Either.map = _.curry(function(fn, either) {
-        return Either.isLeft(either) ? either : Right(fn(either.value));
+    Either.fmap = _.curry(function(fn, either) {
+        return Either.isLeft(either) ? either : _Either.Right(fn(either.value));
     });
 
     Either.fold = _.curry(function(fn, init, either) {
@@ -74,8 +74,13 @@ function TypedEither(L,R) {
     Either.of = Either.Right;
 
     Either.ap = _.curry(function(apply, either) {
-        return Either.isLeft(apply) ? apply : Either.map(apply.value, either);
+        return apply.isLeft() ? apply : Either.fmap(apply.value, either);
     });
+
+    Either.alt = _.curry((f, s) => Either.case({
+        Left: s,
+        Right: f,
+    }, f));
 
     Either.flatten = _.curry(function(either) {
         return Either.isLeft(either) ? either : either.value;

@@ -19,6 +19,7 @@
     "lambdash": "^0.7.0-alpha"
   },
   "devDependencies": {
+    "eslint": "^3.15.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5"
   }
