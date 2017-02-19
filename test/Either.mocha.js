@@ -173,12 +173,12 @@ describe('Either', function() {
         });
     });
 
-    describe('#fmap', function() {
+    describe('#map', function() {
         it('should return the either if the either is a Left', function() {
             var e = Left(1);
             var fn = function(x) {return x + 1;};
 
-            var result = Either.fmap(fn, e);
+            var result = Either.map(fn, e);
 
             assert(Either.isLeft(result));
             assert.equal(result.value, 1);
@@ -188,7 +188,7 @@ describe('Either', function() {
             var e = Right(2);
             var fn = function(x) {return x + 1;};
 
-            var result = Either.fmap(fn, e);
+            var result = Either.map(fn, e);
 
             assert(Either.isRight(result));
             assert.equal(result.value, 3);

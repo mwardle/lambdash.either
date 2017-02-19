@@ -56,7 +56,7 @@ function TypedEither(L,R) {
         return _.compare(left.value, right.value);
     });
 
-    Either.fmap = _.curry(function(fn, either) {
+    Either.map = _.curry(function(fn, either) {
         return Either.isLeft(either) ? either : _Either.Right(fn(either.value));
     });
 
@@ -74,7 +74,7 @@ function TypedEither(L,R) {
     Either.of = Either.Right;
 
     Either.ap = _.curry(function(apply, either) {
-        return apply.isLeft() ? apply : Either.fmap(apply.value, either);
+        return apply.isLeft() ? apply : Either.map(apply.value, either);
     });
 
     Either.alt = _.curry((f, s) => Either.case({
