@@ -95,6 +95,26 @@ function TypedEither(L,R) {
         },
     });
 
+    Either.hashWithSeed = _.curry((seed, either) => {
+
+        const newSeed = Either.isLeft(either)
+            ? _.Hashable.hashWithSeed(seed, 0)
+            : _.Hashable.hashWithSeed(seed, 1)
+        ;
+
+        return _.Hashable.hashWithSeed(newSeed, either.value);
+    });
+
+    _.Eq.deriveFor(Either);
+    _.Ord.deriveFor(Either);
+    _.Semigroup.deriveFor(Either);
+    _.Functor.deriveFor(Either);
+    _.Applicative.deriveFor(Either);
+    _.Foldable.deriveFor(Either);
+    _.Monad.deriveFor(Either);
+    _.Show.deriveFor(Either);
+    _.Hashable.deriveFor(Either);
+
     return Either;
 }
 

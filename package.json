@@ -1,6 +1,6 @@
 {
   "name": "lambdash.either",
-  "version": "0.7.0-alpha",
+  "version": "0.7.0-alpha.2",
   "description": "Either data type for lambdash",
   "main": "src/Either.js",
   "repository": "https://github.com/mwardle/lambdash.either.git",
@@ -16,7 +16,7 @@
   "author": "Mark Wardle <mwwardle@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lambdash": "^0.7.0-alpha"
+    "lambdash": "^0.7.0-alpha.2"
   },
   "devDependencies": {
     "eslint": "^3.15.0",
